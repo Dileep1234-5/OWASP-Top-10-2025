@@ -98,41 +98,41 @@ Successfully demonstrated the Remote File Inclusion (RFI) vulnerability in DVWA 
 ```bash
 sudo nmap 192.168.0.117
 ```
-- ![Screenshot 5](images/img-03.jpeg)
+- ![Screenshot 5](images/img-03.png)
 
 - I connected to the target machine through SSH using the available credentials.
 
 ```bash
 ssh <username>@192.168.0.117
 ```
-- ![Screenshot 5](images/img-04.jpeg)
+- ![Screenshot 5](images/img-04.png)
 
 - I checked the network services running on the target machine and identified that MySQL was listening on the loopback address (`127.0.0.1`) on port `3306`.
 
 ```bash
 netstat -tuln
 ```
-- ![Screenshot 5](images/img-05.jpeg)
+- ![Screenshot 5](images/img-05.png)
 - I used SSH remote port forwarding to forward the MySQL service from the target machine to my Kali Linux machine.
 
 ```bash
 ssh -R 192.168.0.114:3306:127.0.0.1:3306 kali@192.168.0.114
 ```
-- ![Screenshot 5](images/img-06.jpeg)
+- ![Screenshot 5](images/img-06.png)
 - I verified that the MySQL port was successfully forwarded to Kali Linux.
 
 ```bash
 netstat -tuln
 ```
-- ![Screenshot 5](images/img-07.jpeg)
+- ![Screenshot 5](images/img-07.png)
 
 - Using the forwarded port 3306, I connected to the MySQL service and executed the required SQL commands to demonstrate the impact of the misconfiguration.
-- ![Screenshot 5](images/img-08.jpeg)
+- ![Screenshot 5](images/img-08.png)
 - I checked whether the access was successful.
-- ![Page 1](img-09.jpeg)
+- ![Screenshot 1](images/img-09.png)
 - Finally, I started the Metasploit Framework (`msfconsole`) to continue the access verification process.
-- ![Page 1](img-10.jpeg)
-- ![Page 1](img-11.jpeg)
+- ![Screenshot 1](images/img-10.png)
+- ![Screenshot 1](images/img-11.png)
 ### Conclusion
 
 I successfully demonstrated how improper security configuration of services can expose internal resources and create opportunities for unauthorized access. This practical exercise showed the importance of securing database services, restricting access, and properly configuring network services.
@@ -151,11 +151,11 @@ Lab setup : Target- kali , Attacker – HAVBOX1
 ```bash
 wpscan --url http://HSVBOX1ip/wordpress --plugins-detection aggressive
 ```
-- ![Page 1](img-12.jpeg)
+- !![Screenshot 1](images/img-12.jpeg)
 
 - To perform this attack we can advantage of `http://HSVBOX1ip/wordpress` as target and Kali as Attacker.
 - After open the site click on hello world!
-- ![Page 1](img-13.jpeg)
+- ![Screenshot 1](images/img-13.jpeg)
 - Navigate to the PHP web-shell directory on Kali Linux:
 
 ```bash
@@ -170,7 +170,7 @@ sudo cp php-reverse-shell.php /home/kali
 
 - Edit the `php-reverse-shell.php` file and change IP inside the file and also add header `"GIF89a"` to the file to bypass the vulnerable application's
 - NOTE: php or txt files cant access that’s why we use gif header inside the file.
-- ![Page 1](img-14.jpeg)
+- ![Screenshot 1](images/img-14.jpeg)
 - Start a Netcat listener on Kali Linux:
 
 ```bash
@@ -178,9 +178,9 @@ nc -lvp 1234
 ```
 
 - Now upload the `php-reverse-shell.php` file and click on post commentor.
-- ![Page 1](img-15.jpeg)
+- ![Screenshot 1](images/img-15.jpeg)
 - Check the Netcat listener on Kali Linux to verify whether a connection has been received.
-- ![Page 1](img-16.jpeg)
+- ![Screenshot 1](images/img-16.jpeg)
 
 ### Conclusion
 
@@ -203,18 +203,18 @@ sudo nmap 192.168.0.112 -sV
 ```
 
 - I opened the bWAPP login page in the browser.
-- ![Page 1](img-17.jpeg)
+- ![Screenshot 1](images/img-17.jpeg)
 - I created a new user account with the required credentials and logged in to the application.
-- ![Page 1](img-18.jpeg)
+- ![Screenshot 1](images/img-18.jpeg)
 - I selected **A6 – Base64 Encoding (Secret)** from the vulnerability menu and clicked the Hack button.
-- ![Page 1](img-19.jpeg)
+- ![Screenshot 1](images/img-19.jpeg)
 - After the page loaded, I right-clicked and selected Inspect to open the browser Developer Tools.
-- ![Page 1](img-20.jpeg)
+- ![Screenshot 1](images/img-20.jpeg)
 - I navigated to **Storage → Cookies** and located the cookie containing the encoded secret.
 - I copied the cookie value and decoded it using Base64 decoding.
-- ![Page 1](img-21.jpeg)
+- ![Screenshot 1](images/img-21.jpeg)
 - After decoding, I was able to view the original secret value.
-- ![Page 1](img-22.jpeg)
+- ![Screenshot 1](images/img-22.jpeg)
 
 ### Conclusion
 
@@ -235,7 +235,7 @@ Command Injection is a vulnerability where an attacker can inject operating-syst
 - To perform this attack we can advantage of `http://HSVBOX1IP/dvwa` as target and Kali as Attacker.
 - Login to the DVWA using credentials `admin:password`.
 - Navigate to the Command Injection module. View the page source to understand how the application processes the input.
-- ![Page 1](img-23.jpeg)
+- ![Screenshot 1](images/img-23.jpeg)
 - Start a Netcat listener on the attacker machine:
 
 ```bash
@@ -243,11 +243,11 @@ nc -lvp 1234
 ```
 
 - In the DVWA Command Injection input field, enter the appropriate lab payload to demonstrate command execution.
-- ![Page 1](img-24.jpeg)
+- ![Screenshot 1](images/img-24.jpeg)
 > The original PDF includes a command-injection reverse-shell payload at this step. Use only in an isolated, authorized lab.
 
 - Check the Netcat listener to verify whether the connection was received.
-- ![Page 1](img-25.jpeg)
+- ![Screenshot 1](images/img-25.jpeg)
 
 ### Conclusion
 
@@ -265,10 +265,10 @@ To perform this attack we can advantage of `http://HSVBOX1IP/dvwa` as target and
 
 - I opened the DVWA application using the target machine's IP address and logged in with the credentials `admin:password`.
 - I navigated to the File Upload module.
-- ![Page 1](img-26.jpeg)
+- ![Screenshot 1](images/img-26.png)
 - I created a PHP reverse shell file for the authorized lab environment.
 - I uploaded the PHP reverse shell file through the file upload functionality.
-- ![Page 1](img-27.jpeg)
+- ![Screenshot 1](images/img-27.png)
 - After uploading the file, I copied the following path:
 
 ```text
@@ -283,7 +283,7 @@ http://192.168.0.117/dvwa/hackable/uploads/../../hackable/uploads/php-reverse-sh
 
 - I started a Netcat listener on the Kali Linux machine to monitor the incoming connection.
 - I observed the result to verify whether the uploaded PHP file was executed and whether a reverse shell connection was established.
-- ![Page 1](img-28.jpeg)
+- ![Screenshot 1](images/img-28.png)
 
 ### Conclusion
 
@@ -303,17 +303,17 @@ Lab setup : Target = kali, Attacker = HSVBOX1, Tool = Burpsuit
 ```bash
 sudo nmap 192.168.0.125
 ```
-- ![Page 1](img-29.jpeg)
+- ![Screenshot 1](images/img-29.jpeg)
 
 - Use DIRB to identify hidden directories and files on the target web server:
 
 ```bash
 dirb http://192.168.0.125/
 ```
-- ![Page 1](img-30.jpeg)
+- ![Screenshot 1](images/img-30.jpeg)
 
 - Open the discovered `/assets/` directory in the browser to identify the available application and login page.
-- ![Page 1](img-31.jpeg)
+- ![Screenshot 1](images/img-31.jpeg)
 - Before using Burp Suite, configure Firefox to send HTTP traffic through Burp Suite.
 
 In Firefox:
@@ -322,7 +322,7 @@ Settings → Network Settings → Manual Proxy Configuration. Configure:
 
 - HTTP Proxy: `127.0.0.1`
 - Port: `8080`
-- ![Page 1](img-32.jpeg)
+- ![Screenshot 1](images/img-32.jpeg)
 
 - Launch Burp Suite and go to:
   - Proxy → Intercept → Turn on Intercept.
@@ -331,29 +331,29 @@ Settings → Network Settings → Manual Proxy Configuration. Configure:
   - Username: `admin`, Password: `password`
   - Submit the login form.
   - Burp Suite intercepts the HTTP request sent by the browser.
-- ![Page 1](img-33.jpeg)
+- ![Screenshot 1](images/img-33.jpeg)
 - Right-click the intercepted request and select:
   - Send to Intruder
   - Open the Intruder tab and configure the attack positions.
-  - ![Page 1](img-34.jpeg)
+  - ![Screenshot 1](images/img-34.jpeg)
 - Add passwords under payload configuration.
 - Under payload processing -> Add prefix `admin:` & Encode as Base64 -> Start Attack.
-- ![Page 1](img-35.jpeg)
+- ![Screenshot 1](images/img-35.jpeg)
 - Start the Intruder attack and compare the responses.
 - The response status code, response length, or response content can be used to identify an authentication attempt that behaves differently from the failed attempts.
-- ![Page 1](img-36.jpeg)
+- ![Screenshot 1](images/img-36.jpeg)
 - If the captured value is encoded, send it to Burp Suite Decoder.
 - Use the appropriate decoding operations, such as:
   - URL Decode
   - Base64 Decode
-- ![Page 1](img-37.jpeg)
+- ![Screenshot 1](images/img-37.jpeg)
 - The identified credentials were:
 
 ```text
 Username: admin
 Password: admin123
 ```
-- ![Page 1](img-38.jpeg)
+- ![Screenshot 1](images/img-38.jpeg)
 
 - By using credentials login as assets.
 
