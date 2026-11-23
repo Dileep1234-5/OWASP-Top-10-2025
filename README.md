@@ -76,7 +76,7 @@ nc -lvp 1212
 ```
 
 - In the DVWA File Inclusion module, provide the URL of the remotely hosted file.
-  
+
 - ![Screenshot 5](images/img-01.jpeg)
 - Check the Netcat listener to verify whether the connection is received.
 - ![Screenshot 5](images/img-02.jpeg)
